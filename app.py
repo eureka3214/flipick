@@ -8,7 +8,7 @@ if uploaded_pdf is not None:
     toc = doc.get_toc()
     
     for t in toc:
-        toc[1][1] += " modified by set_toc"  
+        t += " modified by set_toc"  
     doc.set_toc(toc)
     st.write(toc) 
     for page in doc:
