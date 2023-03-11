@@ -15,11 +15,11 @@ if uploaded_pdf is not None:
     doc.close()
 
     for block in text_blocks:
-        container = st.container()
-        container.radio(label=block[0][4], options=[block[0][5]])
-        if container.radio_selected:
-                bbox = block[0]
-                st.write(f"Bbox coordinates: {bbox}")
+        container = st.expander(block)
+        # container.radio(label=block[0][4], options=[block[0][5]])
+        # if container.radio_selected:
+        #         bbox = block[0]
+        #         st.write(f"Bbox coordinates: {bbox}")
 
           
         # # st.write(f"Page {page_num + 1}")
