@@ -5,6 +5,9 @@ st.set_page_config(
     page_title="FLIPICK",
     page_icon="🧊",
     layout="wide")
+
+col1, col2 = st.columns([1,3])
+
 def flags_decomposer(flags):
     """Make font flags human readable."""
     l = []
@@ -74,5 +77,3 @@ uploaded_file = st.sidebar.file_uploader("Upload a PDF file", type="pdf")
 
 if uploaded_file is not None:
     display_fonts(uploaded_file)
-
-col1, col2 = st.columns([1,3])
