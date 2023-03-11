@@ -22,7 +22,7 @@ if uploaded_file is not None:
             text = block[4]
             font_name = block[5]
             font_size = block[6]
-            st.write(block)
+            st.write(text)
             # Display font name and size
             # st.write(f"{text} - Font: {font_name}, Size: {font_size}")
 
