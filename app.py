@@ -11,11 +11,11 @@ if uploaded_pdf is not None:
     #     t += " modified by set_toc"  
     # doc.set_toc(toc)
     st.write(toc) 
-    for page in doc:
-        txtpg = page.get_textpage()
+    # for page in doc:
+    #     txtpg = page.get_textpage()
         
-        # pix = page.get_pixmap()
+    #     # pix = page.get_pixmap()
         # st.write(pix) 
         
         
-    doc.close()
+    # doc.close()
