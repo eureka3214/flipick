@@ -11,7 +11,7 @@ if uploaded_pdf is not None:
     text = ""
     for page in doc:
         txtpg = page.get_textpage()
-        pix = page.get_pixmap()
+        pix = page.get_xobjects()
         st.image(pix)
         st.write(pix) 
         
