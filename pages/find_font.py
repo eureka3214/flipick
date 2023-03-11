@@ -25,8 +25,11 @@ if uploaded_file is not None:
                 font_names.append(font_name)
 
     # Close PDF document
-    pdf_doc.close()
+    # pdf_doc.close()
 
     # Display font names in select box
     selected_font = st.selectbox("Select a font", font_names)
     st.write(f"You selected: {selected_font}")
+    # for page in pdf_doc:
+    #     # st.write(f"Page {page.number + 1}")
+    #     for block in page.get_text("text")
