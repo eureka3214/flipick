@@ -109,8 +109,8 @@ def make_printable(path_to_file: Path):
         The file is saved in the same directory as the original file.
     """
     doc = fitz.open(path_to_file)
-    if not doc.has_annots():
-        raise Exception("This PDF has no annotations.")
+    # if not doc.has_annots():
+    #     raise Exception("This PDF has no annotations.")
 
     for page in doc:
         page = make_printable_page_wise(page)
