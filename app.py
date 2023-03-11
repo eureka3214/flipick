@@ -11,7 +11,7 @@ def read_pdf(file):
 uploaded_pdf = st.file_uploader("Load pdf: ", type=['pdf'])
 
 if uploaded_pdf is not None:
-    image = read_pdf(uploaded_file)
+    image = read_pdf(uploaded_pdf)
     st.image(image, caption="PDF page", use_column_width=True)
     doc = fitz.open(stream=uploaded_pdf.read(), filetype="pdf")
     # cat = doc.get_toc(simple=False)
