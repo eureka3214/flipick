@@ -12,5 +12,5 @@ if uploaded_pdf is not None:
     for page in doc:
         txtpg = page.get_textpage()
         
-        st.write(txtpg) 
+        st.write(txtpg.extractDICT()) 
     doc.close()
