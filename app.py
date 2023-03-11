@@ -11,6 +11,10 @@ def read_pdf(file):
     return image
 
 def displayPDF(file):
+    doc = fitz.open(stream=file.read(), filetype="pdf")
+    base64_pdf = base64.b64encode(doc).decode('utf-8')
+
+
     # Opening file from file path
     with open(file, "rb") as f:
         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
