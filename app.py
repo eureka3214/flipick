@@ -7,6 +7,7 @@ if uploaded_pdf is not None:
     doc = fitz.open(stream=uploaded_pdf.read(), filetype="pdf")
     cat = doc.pdf_catalog()
     st.write(doc.xref_object(cat))
+    st.write(cat)
     # text = ""
     # for page in doc:
     #     text += page.getText()
