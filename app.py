@@ -8,8 +8,8 @@ if uploaded_pdf is not None:
     cat = doc.pdf_catalog()
     st.write(doc.xref_object(cat))
     st.write(cat)
-    # text = ""
-    # for page in doc:
-    #     text += page.getText()
-    # st.write(text) 
+    text = ""
+    for page in doc:
+        text += page.get_Text()
+    st.write(text) 
     doc.close()
