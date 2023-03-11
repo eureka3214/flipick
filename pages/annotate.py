@@ -17,7 +17,7 @@ if uploaded_pdf is not None:
     for block in text_blocks:
         container = st.expander(str(block[0][4]))
         with container:
-            st.write(block[0][4])
+            st.write(block[4])
         # container.radio(label=block[0][4], options=[block[0][5]])
         # if container.radio_selected:
         #         bbox = block[0]
