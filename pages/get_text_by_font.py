@@ -21,7 +21,7 @@ def flags_decomposer(flags):
     return ", ".join(l)
 
 def display_fonts(pdf_path):
-    doc = fitz.open(pdf_path)
+    doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
     page = doc[0]
 
     # read page text as a dictionary, suppressing extra spaces in CJK fonts
