@@ -12,5 +12,5 @@ if uploaded_pdf is not None:
         # pix = page.get_pixmap()
         # st.write(pix) 
         
-        st.write(txtpg.extractBLOCK()) 
+        st.write(txtpg.extractBLOCKS()) 
     doc.close()
