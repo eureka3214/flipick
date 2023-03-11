@@ -65,8 +65,8 @@ def display_fonts(pdf_path):
                 fp["font_size"],  # font size
                 fp["font_color"],  # font color
             )
-            st.write("Text: '%s'" % fp["text"])  # simple print of text
-            st.write(font_properties)
+            col1.write("Text: '%s'" % fp["text"])  # simple print of text
+            col1.write(font_properties)
 
 st.title("Filter with Fonts (WORKING)")
 
@@ -74,3 +74,5 @@ uploaded_file = st.sidebar.file_uploader("Upload a PDF file", type="pdf")
 
 if uploaded_file is not None:
     display_fonts(uploaded_file)
+
+col1, col2 = st.columns([1,3])
