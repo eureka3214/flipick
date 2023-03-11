@@ -1,9 +1,18 @@
 import fitz
 import streamlit as st
 
+def read_pdf(file):
+    doc = fitz.open(stream=file.read(), filetype="pdf")
+    page = doc.loadPage(0) # Choose the first page
+    pix = page.getPixmap()
+    image = pix.getImageData("png")
+    return image
+
 uploaded_pdf = st.file_uploader("Load pdf: ", type=['pdf'])
 
 if uploaded_pdf is not None:
+    image = read_pdf(uploaded_file)
+    st.image(image, caption="PDF page", use_column_width=True)
     doc = fitz.open(stream=uploaded_pdf.read(), filetype="pdf")
     # cat = doc.get_toc(simple=False)
     # st.write(doc.xref_object(cat))
