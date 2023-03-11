@@ -30,6 +30,15 @@ def flags_decomposer(flags):
 def display_fonts(pdf_path):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
     page = doc[0]
+        # for page in doc:
+    txtpg = page.get_textpage()
+    
+    html = txtpg.extractHTML()
+    st.code(html,language='html')
+    col2.markdown(html, unsafe_allow_html =True) 
+    
+        
+    # doc.close()
 
     # read page text as a dictionary, suppressing extra spaces in CJK fonts
     blocks = page.get_text("dict", flags=11)["blocks"]
