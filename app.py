@@ -78,8 +78,9 @@ def display_fonts(pdf_path):
                 fp["font_color"],  # font color
             )
             container= st.expander(str("Text: '%s'" % fp["text"]))
-            # col1.container()  # simple print of text
-            col1.container.write(font_properties)
+            with col1.container():
+                  # simple print of text
+                st.write(font_properties)
 
 
 uploaded_file = st.sidebar.file_uploader("Upload a PDF file", type="pdf")
