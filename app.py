@@ -16,6 +16,7 @@ if uploaded_pdf is not None:
         txtpg = page.get_textpage()
         
         html = txtpg.extractHTML()
+        st.write(html)
         st.markdown(html, unsafe_allow_html =True) 
         
         
