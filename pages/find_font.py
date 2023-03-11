@@ -18,8 +18,6 @@ if uploaded_file is not None:
 
     # Iterate over pages in PDF
     for page in pdf_doc:
-        st.write(f"Page {page.number + 1}")
-
         # Iterate over text blocks in page
         for block in page.get_fonts("text"):
             font_name = block[3]
