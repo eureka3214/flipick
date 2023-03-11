@@ -3,8 +3,9 @@ import streamlit as st
 
 def read_pdf(file):
     doc = fitz.open(stream=file.read(), filetype="pdf")
-    page = doc.loadPage(0) # Choose the first page
-    pix = page.getPixmap()
+    # page = doc.loadPage(0) # Choose the first page
+    for page in doc:
+        pix = page.getPixmap()
     image = pix.getImageData("png")
     return image
 
