@@ -10,6 +10,7 @@ if uploaded_pdf is not None:
     st.write(cat)
     text = ""
     for page in doc:
-        text += page.get_textpage()
-        st.write(page) 
+        txtpg = page.get_textpage()
+        
+        st.write(txtpg) 
     doc.close()
