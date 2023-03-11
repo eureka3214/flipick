@@ -1,6 +1,10 @@
 import streamlit as st
 import fitz
 
+st.set_page_config(
+    page_title="FLIPICK",
+    page_icon="🧊",
+    layout="wide")
 def flags_decomposer(flags):
     """Make font flags human readable."""
     l = []
