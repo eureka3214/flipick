@@ -55,7 +55,7 @@ def app():
             # Display the block coordinates on the page
             for block_coord in block_coords:
                 st.write(f"Page {block_coord[0]}, Block {block_coord[1]} - {block_coord[2]}")
-                parts = block_coord_str.split(" ")
+                # parts = block_coord_str.split(" ")
                 page_num = block_coord[0]
                 rect_tl = block_coord[1]
                 rect_br = block_coord[2]
