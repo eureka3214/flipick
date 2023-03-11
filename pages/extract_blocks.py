@@ -12,15 +12,24 @@ if uploaded_pdf is not None:
     # # doc.set_toc(toc)
     # st.write(toc)
     # doc.close() 
-    checkbox_key = 0
+    radio_pg_key = 0
+    radio_header_key = 0
+    radio_Subheader_key = 0
+
     for page in doc:
         txtpg = page.get_textpage()
         
         blocks = txtpg.extractBLOCKS()
         for block in blocks:
             container = st.expander(str(block[4]))
-            checkbox_key += 1
-            container.checkbox("select to group", label_visibility="hidden", key=checkbox_key)
+            radio_pg_key += 1
+            radio_header_key += 1
+            radio_Subheader_key += 1
+
+            container.radio("Paragraph", label_visibility="visible", key=radio_pg_key)
+            container.radio("Header", label_visibility="visible", key=radio_Subheader_key)
+            container.radio("subheader", label_visibility="visible", key=radio_Subheader_key)
+
             with container:
                
                 st.write(block)
