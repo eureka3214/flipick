@@ -14,7 +14,7 @@ if uploaded_pdf is not None:
         
     doc.close()
 
-    for blocks in text_blocks:
+    for block in text_blocks:
         container = st.container()
         container.radio(label=block[0][4], options=[block[0][5]])
         if container.radio_selected:
