@@ -64,7 +64,7 @@ def display_fonts(pdf_path):
             st.write("Text: '%s'" % fp["text"])  # simple print of text
             st.write(font_properties)
 
-st.title("PDF Font Checker")
+st.title("Filter with Fonts (WORKING)")
 
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 
