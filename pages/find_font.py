@@ -20,7 +20,7 @@ if uploaded_file is not None:
         # Iterate over text blocks in page
         for block in page.get_fonts("text"):
             text = block[4]
-            font_name = block[5]
+            font_name = block[3]
             font_size = block[6]
             st.write(font_name)
             # Display font name and size
