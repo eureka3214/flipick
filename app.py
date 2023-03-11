@@ -12,7 +12,7 @@ if uploaded_pdf is not None:
     for page in doc:
         txtpg = page.get_textpage()
         pix = page.get_xobjects()
-        st.image(pix)
+        # st.image(pix)
         st.write(pix) 
         
         # st.write(txtpg.extractDICT()) 
