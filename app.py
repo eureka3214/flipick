@@ -7,9 +7,9 @@ if uploaded_pdf is not None:
     doc = fitz.open(stream=uploaded_pdf.read(), filetype="pdf")
     toc = doc.get_toc()
     
-    for t in toc:
-        t += " modified by set_toc"  
-    doc.set_toc(toc)
+    # for t in toc:
+    #     t += " modified by set_toc"  
+    # doc.set_toc(toc)
     st.write(toc) 
     for page in doc:
         txtpg = page.get_textpage()
