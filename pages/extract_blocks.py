@@ -21,7 +21,7 @@ if uploaded_pdf is not None:
             container.checkbox("select to group", label_visibility="hidden", key=str(block[5]))
             with container:
                
-                st.write(block)
+                st.write(block[4])
         # st.markdown(html, unsafe_allow_html =True) 
         
         
