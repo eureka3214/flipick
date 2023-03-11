@@ -12,13 +12,15 @@ if uploaded_pdf is not None:
     # # doc.set_toc(toc)
     # st.write(toc)
     # doc.close() 
+    checkbox_key = 0
     for page in doc:
         txtpg = page.get_textpage()
         
         blocks = txtpg.extractBLOCKS()
         for block in blocks:
             container = st.expander(str(block))
-            container.checkbox("select to group", label_visibility="hidden", key=str(block))
+            checkbox_key += 1
+            container.checkbox("select to group", label_visibility="hidden", key=checkbox_key)
             with container:
                
                 st.write(block[4])
