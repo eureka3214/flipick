@@ -6,7 +6,7 @@ st.set_page_config(page_title="FLIPICK",page_icon="🧊",layout="wide")
 st.title("Filter with Fonts (WORKING)")
 
 
-col1, col2 = st.columns([1,3],gap="medium")
+col1, col2 = st.columns([2,4],gap="medium")
 
 def flags_decomposer(flags):
     """Make font flags human readable."""
@@ -77,8 +77,9 @@ def display_fonts(pdf_path):
                 fp["font_size"],  # font size
                 fp["font_color"],  # font color
             )
-            col1.write("Text: '%s'" % fp["text"])  # simple print of text
-            col1.write(font_properties)
+            container= st.expander()
+            col1.container("Text: '%s'" % fp["text"])  # simple print of text
+            container.write(font_properties)
 
 
 uploaded_file = st.sidebar.file_uploader("Upload a PDF file", type="pdf")
