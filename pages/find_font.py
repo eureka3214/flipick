@@ -18,7 +18,7 @@ if uploaded_file is not None:
         st.write(f"Page {page.number + 1}")
 
         # Iterate over text blocks in page
-        for block in page.get_text("blocks"):
+        for block in page.get_fonts("blocks"):
             text = block[4]
             font_name = block[5]
             font_size = block[6]
