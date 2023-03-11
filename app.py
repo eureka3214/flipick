@@ -34,6 +34,8 @@ def display_fonts(pdf_path):
     txtpg = page.get_textpage()
     
     html = txtpg.extractHTML()
+    xml = txtpg.extractXML()
+    st.code(xml,language='xml')
     # st.code(html,language='html')
     col2.markdown(html, unsafe_allow_html =True) 
     
