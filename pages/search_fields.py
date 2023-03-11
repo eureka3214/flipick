@@ -7,7 +7,7 @@ import fitz
 
 if __name__ == '__main__':
     def find_text_in_pdf(pdf_file, search_text):
-        doc = fitz.open(pdf_file)
+        doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
         blocks = []
         for page in doc:
             block = page.search_for(search_text)
