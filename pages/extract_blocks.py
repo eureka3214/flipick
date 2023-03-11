@@ -19,7 +19,7 @@ if uploaded_pdf is not None:
         for block in blocks:
             container = st.container()
             with container:
-                checkbox("Select block to group", key="disabled")
+                st.checkbox("Select block to group", key="disabled")
                 st.write(block)
         # st.markdown(html, unsafe_allow_html =True) 
         
