@@ -2,7 +2,11 @@ import streamlit as st
 import fitz
 
 
-def find_text_in_pdf(pdf_file, search_text):
+
+
+
+if __name__ == '__main__':
+    def find_text_in_pdf(pdf_file, search_text):
     doc = fitz.open(pdf_file)
     blocks = []
     for page in doc:
@@ -10,9 +14,7 @@ def find_text_in_pdf(pdf_file, search_text):
         if block:
             blocks.append((page.number, block))
     return blocks
-
-
-if __name__ == '__main__':
+    
     st.title('PDF Text Search')
     pdf_file = st.file_uploader('Upload PDF', type=['pdf'])
     if pdf_file is not None:
