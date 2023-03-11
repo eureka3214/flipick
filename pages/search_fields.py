@@ -32,10 +32,10 @@ if uploaded_file is not None:
     pdf = fitz.open(stream=uploaded_file.read(), filetype="pdf")
 
     # Loop through each page of the PDF file
-    for page in pdf:
+    # for page in pdf:
         # Get the block coordinates for the search text on this page
-        block_coords = get_block_coords(page, search_text)
-
-        # Display the block coordinates on the page
-        for block_coord in block_coords:
-            st.write(f"Page {block_coord[0]}, Block {block_coord[1]} - {block_coord[2]}")
+    block_coords = get_block_coords(page, search_text)
+    st.write(block_coords)
+        # # Display the block coordinates on the page
+        # for block_coord in block_coords:
+        #     st.write(f"Page {block_coord[0]}, Block {block_coord[1]} - {block_coord[2]}")
