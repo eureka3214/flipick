@@ -1,10 +1,10 @@
 import streamlit as st
 import fitz
 
-st.set_page_config(
-    page_title="FLIPICK",
-    page_icon="🧊",
-    layout="wide")
+st.set_page_config(page_title="FLIPICK",page_icon="🧊",layout="wide")
+
+st.title("Filter with Fonts (WORKING)")
+
 
 col1, col2 = st.columns([1,3])
 
@@ -71,7 +71,6 @@ def display_fonts(pdf_path):
             col1.write("Text: '%s'" % fp["text"])  # simple print of text
             col1.write(font_properties)
 
-st.title("Filter with Fonts (WORKING)")
 
 uploaded_file = st.sidebar.file_uploader("Upload a PDF file", type="pdf")
 
