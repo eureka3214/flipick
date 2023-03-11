@@ -18,6 +18,22 @@ def get_block_coords(page, search_text):
     return block_coords
 
 
+def get_text_at_coords(pdf, block_coords):
+    # Loop through each block coordinate
+    for block_coord in block_coords:
+        # Get the page number and rectangle coordinates for this block
+        page_num, rect_tl, rect_br = block_coord
+
+        # Get the page object for this page number
+        page = pdf[page_num]
+
+        # Get the text in the rectangle
+        text = page.get_text("text", clip=rect_tl + rect_br)
+
+        # Display the text on the screen
+        st.write(f"Page {page_num}: {text.strip()}")
+
+
 # Define the Streamlit app
 def app():
     # Upload a PDF file
@@ -39,5 +55,22 @@ def app():
             # Display the block coordinates on the page
             for block_coord in block_coords:
                 st.write(f"Page {block_coord[0]}, Block {block_coord[1]} - {block_coord[2]}")
+
+        # Get the user's block coordinates
+        block_coords_str = st.text_input("Enter block coordinates (e.g. '0 (10, 20) (100, 200)'):")
+
+        # If the user has entered block coordinates
+        if block_coords_str:
+            # Parse the block coordinates string into a list of tuples
+            block_coords = []
+            for block_coord_str in block_coords_str.split(";"):
+                parts = block_coord_str.split(" ")
+                page_num = int(parts[0])
+                rect_tl = eval(parts[1])
+                rect_br = eval(parts[2])
+                block_coords.append((page_num, rect_tl, rect_br))
+
+            # Get the text at the block coordinates and display it on the screen
+            get_text_at_coords(pdf, block_coords)
 
 app()
