@@ -28,10 +28,10 @@ if uploaded_pdf is not None:
         blocks = txtpg.extractBLOCKS()
         for block in blocks:
             container = st.expander(str(block))
-            container.checkbox("select to group", label_visibility="hidden", key=str(block[4]))
+            container.checkbox("select to group", label_visibility="hidden", key=str(block[5]))
             with container:
                 # add a dropdown to select the variable to add the block to
-                var_selection = st.selectbox("Add to variable:", key=str(block[5]), options=list(variables_dict.keys()))
+                var_selection = st.selectbox("Add to variable:", key=str(block[4]), options=list(variables_dict.keys()))
                 # add the block to the selected variable
                 if st.button("Add block"):
                     variables_dict[var_selection].append(block[4])
