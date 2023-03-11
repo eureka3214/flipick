@@ -22,7 +22,7 @@ def find_text_in_pdf(pdf_file, search_text):
         block = page.search_for(search_text)
         if block:
             for b in block:
-                style = get_block_style(page[b])
+                style = get_block_style(b)
                 blocks.append((page.number, b, style))
     return blocks
 
