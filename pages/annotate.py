@@ -14,11 +14,18 @@ if uploaded_pdf is not None:
         
     doc.close()
 
-    for page_num, blocks in enumerate(text_blocks):
-        st.write(f"Page {page_num + 1}")
-        for block_num, block in enumerate(blocks):
-            container = st.container()
-            container.radio(label=block["lines"][0]["spans"][0]["text"], options=[block_num])
-            if container.radio_selected:
-                bbox = block["bbox"]
+    for blocks in text_blocks:
+        container = st.container()
+        container.radio(label=block[0][4], options=[block[0][5]])
+        if container.radio_selected:
+                bbox = block[0]
                 st.write(f"Bbox coordinates: {bbox}")
+
+          
+        # # st.write(f"Page {page_num + 1}")
+        # for block_num, block in enumerate(blocks):
+        #     container = st.container()
+        #     container.radio(label=block["lines"][0]["spans"][0]["text"], options=[block_num])
+        #     if container.radio_selected:
+        #         bbox = block["bbox"]
+        #         st.write(f"Bbox coordinates: {bbox}")
