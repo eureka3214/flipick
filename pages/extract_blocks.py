@@ -29,10 +29,10 @@ if uploaded_pdf is not None:
             container.checkbox("select to group", label_visibility="hidden", key=str(block[5]))
             with container:
                 # add a dropdown to select the variable to add the block to
-                var_selection = st.selectbox("Add to variable:", options=list(variables_dict.keys()))
+                # var_selection = st.selectbox("Add to variable:", options=list(variables_dict.keys()))
                 # add the block to the selected variable
                 if st.button("Add block"):
-                    variables_dict[var_selection].append(block[4])
+                    variables_dict[var_name].append(block[4])
 
                 st.write(block[4])
         # st.markdown(html, unsafe_allow_html =True)
