@@ -8,12 +8,12 @@ def get_block_coords(page, search_text):
 
     # Get the block coordinates for each instance
     block_coords = []
-    for inst in instances:
+    # for inst in instances:
         # Get the rectangle coordinates for this instance
-        rect = fitz.Rect(inst)
+    rect = fitz.Rect(instances)
 
         # Convert the rectangle coordinates to block coordinates
-        block_coords.append((page.number, rect.tl, rect.br))
+    block_coords.append((page.number, rect.tl, rect.br))
 
     return block_coords
 
