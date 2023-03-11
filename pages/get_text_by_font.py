@@ -1,40 +1,47 @@
 import streamlit as st
-import fitz # PyMuPDF library
+import fitz
 
-# Define function to extract text from PDF using PyMuPDF
-def extract_text(pdf_path):
-    pdf_doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
+def flags_decomposer(flags):
+    """Make font flags human readable."""
+    l = []
+    if flags & 2 ** 0:
+        l.append("superscript")
+    if flags & 2 ** 1:
+        l.append("italic")
+    if flags & 2 ** 2:
+        l.append("serifed")
+    else:
+        l.append("sans")
+    if flags & 2 ** 3:
+        l.append("monospaced")
+    else:
+        l.append("proportional")
+    if flags & 2 ** 4:
+        l.append("bold")
+    return ", ".join(l)
 
-    # with fitz.open(pdf_path) as doc:
-    text = ""
-    for page in pdf_doc:
-        text += page.get_text()
-    return text
+def display_fonts(pdf_path):
+    doc = fitz.open(pdf_path)
+    page = doc[0]
 
-# Define function to apply font to text
-def apply_font(text, font_name):
-    font = f"fonts/{font_name}.ttf" # Assuming the font files are stored in a 'fonts' subdirectory
-    style = fitz.TextStyle(font=font)
-    styled_text = ""
-    for line in text.split("\n"):
-        styled_text += f"<span style='font-family:{font_name};'>{line}</span>\n"
-    return styled_text
+    # read page text as a dictionary, suppressing extra spaces in CJK fonts
+    blocks = page.get_text("dict", flags=11)["blocks"]
+    for b in blocks:  # iterate through the text blocks
+        for l in b["lines"]:  # iterate through the text lines
+            for s in l["spans"]:  # iterate through the text spans
+                st.write("")
+                font_properties = "Font: '%s' (%s), size %g, color #%06x" % (
+                    s["font"],  # font name
+                    flags_decomposer(s["flags"]),  # readable font flags
+                    s["size"],  # font size
+                    s["color"],  # font color
+                )
+                st.write("Text: '%s'" % s["text"])  # simple print of text
+                st.write(font_properties)
 
-# Streamlit app
-st.title("PDF Text with Custom Font")
+st.title("PDF Font Checker")
 
-# File upload widget
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 
-# Font select box
-font_options = ["Arial", "Calibri", "Georgia", "Times New Roman"]
-font_name = st.selectbox("Select a font", options=font_options)
-
-# If file is uploaded and font is selected
-if uploaded_file is not None and font_name is not None:
-    # Extract text from PDF
-    text = extract_text(uploaded_file)
-    # Apply font to text
-    styled_text = apply_font(text, font_name)
-    # Display styled text
-    st.write(styled_text, unsafe_allow_html=True)
+if uploaded_file is not None:
+    display_fonts(uploaded_file)
