@@ -18,7 +18,7 @@ if uploaded_pdf is not None:
         blocks = txtpg.extractBLOCKS()
         for block in blocks:
             container = st.container()
-            container.checkbox("Select block to group", key="disabled")
+            container.checkbox("Select block to group",label_visibility="hidden")
             with container:
                
                 st.write(block)
