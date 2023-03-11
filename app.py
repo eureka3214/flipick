@@ -6,7 +6,7 @@ st.set_page_config(page_title="FLIPICK",page_icon="🧊",layout="wide")
 st.title("Filter with Fonts (WORKING)")
 
 
-col1, col2 = st.columns([1,3])
+col1, col2 = st.columns([1,3],gap="medium")
 
 def flags_decomposer(flags):
     """Make font flags human readable."""
