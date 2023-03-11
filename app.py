@@ -6,7 +6,7 @@ def read_pdf(file):
     # page = doc.loadPage(0) # Choose the first page
     for page in doc:
         pix = page.get_pixmap()
-    image = pix.getImageData("png")
+    image = pix.get_ImageData("png")
     return image
 
 uploaded_pdf = st.file_uploader("Load pdf: ", type=['pdf'])
