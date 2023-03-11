@@ -3,22 +3,24 @@ import streamlit as st
 
 uploaded_pdf = st.file_uploader("Load pdf: ", type=['pdf'])
 
+
+variables_dict = {}
+
+# add a button to create a new variable and add it to the dictionary
+if st.button("Add"):
+    # prompt the user for a name for the variable
+    var_name = st.text_input("Enter a name for the variable:")
+    if var_name:
+        # create a new variable with the name entered by the user
+        exec(f"{var_name} = ''")
+        # add the variable to the dictionary
+        variables_dict[var_name] = []
 if uploaded_pdf is not None:
     doc = fitz.open(stream=uploaded_pdf.read(), filetype="pdf")
 
 
     # create an empty dictionary to hold the variables
-    variables_dict = {}
-
-    # add a button to create a new variable and add it to the dictionary
-    if st.button("Add"):
-        # prompt the user for a name for the variable
-        var_name = st.text_input("Enter a name for the variable:")
-        if var_name:
-            # create a new variable with the name entered by the user
-            exec(f"{var_name} = ''")
-            # add the variable to the dictionary
-            variables_dict[var_name] = []
+    
 
     for page in doc:
         txtpg = page.get_textpage()
