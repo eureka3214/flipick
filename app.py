@@ -28,7 +28,8 @@ def displayPDF(file):
 uploaded_pdf = st.file_uploader("Load pdf: ", type=['pdf'])
 
 if uploaded_pdf is not None:
-    displayPDF(uploaded_pdf)
+    st.write("jsjsjs")
+    # displayPDF(uploaded_pdf)
     # image = read_pdf(uploaded_pdf)
     # st.image(image, caption="PDF page", use_column_width=True)
   
