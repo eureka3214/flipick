@@ -20,38 +20,28 @@ def flags_decomposer(flags):
         l.append("bold")
     return ", ".join(l)
 
-def display_fonts(pdf_path, font_name, font_size, font_color):
+def display_fonts(pdf_path):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
     page = doc[0]
 
     # read page text as a dictionary, suppressing extra spaces in CJK fonts
     blocks = page.get_text("dict", flags=11)["blocks"]
-    font_filtered_data = []
     for b in blocks:  # iterate through the text blocks
         for l in b["lines"]:  # iterate through the text lines
             for s in l["spans"]:  # iterate through the text spans
-                if (s["font"].lower() == font_name.lower() or font_name.lower() == "all") and \
-                        (s["size"] == font_size or font_size == "all") and \
-                        (s["color"] == font_color or font_color == "all"):
-                    font_properties = {
-                        "Text": s["text"],
-                        "Font": s["font"],
-                        "Size": s["size"],
-                        "Color": s["color"]
-                    }
-                    font_filtered_data.append(font_properties)
+                st.write("")
+                font_properties = "Font: '%s' (%s), size %g, color #%06x" % (
+                    s["font"],  # font name
+                    flags_decomposer(s["flags"]),  # readable font flags
+                    s["size"],  # font size
+                    s["color"],  # font color
+                )
+                st.write("Text: '%s'" % s["text"])  # simple print of text
+                st.write(font_properties)
 
-    if len(font_filtered_data) > 0:
-        st.table(font_filtered_data)
-    else:
-        st.write("No matching fonts found.")
-
-st.title("PDF Font Checker")
+st.title("PDF Font Checker WORKING")
 
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
-font_name = st.selectbox("Select Font Name", ["All", "Arial", "Times", "Helvetica", "Courier", "Symbol", "Other"])
-font_size = st.selectbox("Select Font Size", ["All", 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72])
-font_color = st.selectbox("Select Font Color", ["All", "#000000", "#ff0000", "#00ff00", "#0000ff", "#ffff00", "#00ffff", "#ff00ff"])
 
 if uploaded_file is not None:
-    display_fonts(uploaded_file, font_name, font_size, font_color)
+    display_fonts(uploaded_file)
