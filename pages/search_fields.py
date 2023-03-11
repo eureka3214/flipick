@@ -55,22 +55,27 @@ def app():
             # Display the block coordinates on the page
             for block_coord in block_coords:
                 st.write(f"Page {block_coord[0]}, Block {block_coord[1]} - {block_coord[2]}")
+                parts = block_coord_str.split(" ")
+                page_num = block_coord[0]
+                rect_tl = block_coord[1]
+                rect_br = block_coord[2]
 
+            get_text_at_coords(pdf, block_coords)
         # Get the user's block coordinates
-        block_coords_str = st.text_input("Enter block coordinates (e.g. '0 (10, 20) (100, 200)'):")
+        # block_coords_str = st.text_input("Enter block coordinates (e.g. '0 (10, 20) (100, 200)'):")
 
         # If the user has entered block coordinates
-        if block_coords_str:
-            # Parse the block coordinates string into a list of tuples
-            block_coords = []
-            for block_coord_str in block_coords_str.split(";"):
-                parts = block_coord_str.split(" ")
-                page_num = int(parts[0])
-                rect_tl = eval(parts[1])
-                rect_br = eval(parts[2])
-                block_coords.append((page_num, rect_tl, rect_br))
+        # if block_coords_str:
+        #     # Parse the block coordinates string into a list of tuples
+        #     block_coords = []
+        #     for block_coord_str in block_coords_str.split(";"):
+        #         parts = block_coord_str.split(" ")
+        #         page_num = int(parts[0])
+        #         rect_tl = eval(parts[1])
+        #         rect_br = eval(parts[2])
+        #         block_coords.append((page_num, rect_tl, rect_br))
 
-            # Get the text at the block coordinates and display it on the screen
-            get_text_at_coords(pdf, block_coords)
+        #     # Get the text at the block coordinates and display it on the screen
+        #     get_text_at_coords(pdf, block_coords)
 
 app()
