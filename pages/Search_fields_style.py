@@ -16,7 +16,7 @@ def get_block_style(block):
 
 
 def find_text_in_pdf(pdf_file, search_text):
-     doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
+    doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
     blocks = []
     for page in doc:
         block = page.search_for(search_text)
