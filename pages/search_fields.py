@@ -66,7 +66,7 @@ def app():
                 bc.append((page_num, rect_tl, rect_br))
 
 
-            get_text_at_coords(pdf, bc)
+            # get_text_at_coords(pdf, bc)
         # Get the user's block coordinates
         # block_coords_str = st.text_input("Enter block coordinates (e.g. '0 (10, 20) (100, 200)'):")
 
