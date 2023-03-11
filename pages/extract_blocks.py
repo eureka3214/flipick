@@ -22,7 +22,7 @@ if uploaded_pdf is not None:
         for block in blocks:
             container = st.expander(str(block[4]))
             radio_title_key += 1
-            container.radio("Content Option", options=["header", "subheader","paragraph"],label_visibility="visible", key=radio_title_key)
+            container.radio("Content Option", options=["header", "subheader","paragraph","bulletpoints"],label_visibility="visible", key=radio_title_key)
             
             with container:
                
