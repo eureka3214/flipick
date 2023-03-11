@@ -51,7 +51,7 @@ def app():
         for page in pdf:
             # Get the block coordinates for the search text on this page
             block_coords = get_block_coords(page, search_text)
-
+            bc = []
             # Display the block coordinates on the page
             for block_coord in block_coords:
                 st.write(f"Page {block_coord[0]}, Block {block_coord[1]} - {block_coord[2]}")
@@ -59,8 +59,10 @@ def app():
                 page_num = block_coord[0]
                 rect_tl = block_coord[1]
                 rect_br = block_coord[2]
+                bc.append((page_num, rect_tl, rect_br))
 
-            get_text_at_coords(pdf, block_coords)
+
+            get_text_at_coords(pdf, bc)
         # Get the user's block coordinates
         # block_coords_str = st.text_input("Enter block coordinates (e.g. '0 (10, 20) (100, 200)'):")
 
