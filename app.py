@@ -9,8 +9,9 @@ if uploaded_pdf is not None:
     text = ""
     for page in doc:
         txtpg = page.get_textpage()
+        labels = page.get_page_labels()
         # pix = page.get_pixmap()
         # st.write(pix) 
         
-        st.write(txtpg.extractBLOCKS()) 
+        st.write(labels) 
     doc.close()
