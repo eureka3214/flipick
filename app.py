@@ -77,8 +77,8 @@ def display_fonts(pdf_path):
                 fp["font_size"],  # font size
                 fp["font_color"],  # font color
             )
-            container= st.expander(str("Text: '%s'" % fp["text"]))
-            with col1.container():
+            with col1:
+                container= st.expander(str("Text: '%s'" % fp["text"]))
                   # simple print of text
                 container.write(font_properties)
 
