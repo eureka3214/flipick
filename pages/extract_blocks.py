@@ -7,7 +7,7 @@ uploaded_pdf = st.file_uploader("Load pdf: ", type=['pdf'])
 variables_dict = {}
 
 # add a button to create a new variable and add it to the dictionary
-if st.button("Add"):
+if st.button("Add" key="add variables"):
     # prompt the user for a name for the variable
     var_name = st.text_input("Enter a name for the variable:")
     if var_name:
