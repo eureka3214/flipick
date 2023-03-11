@@ -14,6 +14,10 @@ def get_block_coords(page, search_text):
 
         # Convert the rectangle coordinates to block coordinates
         block_coords.append((page.number, rect.tl, rect.br))
+        ext = page.get_text("text", clip=rect.tl + rect.br)
+
+        # Display the text on the screen
+        st.write(f"Page {page_num}: {text.strip()}")
 
     return block_coords
 
