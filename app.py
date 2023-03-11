@@ -45,9 +45,9 @@ def display_fonts(pdf_path):
     font_colors = list(set([fp["font_color"] for fp in font_properties_list]))
 
     # Generate dropdowns for filtering
-    selected_font_name = st.selectbox("Select font name", ["All"] + font_names)
-    selected_font_size = st.selectbox("Select font size", ["All"] + [str(fs) for fs in font_sizes])
-    selected_font_color = st.selectbox("Select font color", ["All"] + [str(fc) for fc in font_colors])
+    selected_font_name = st.sidebar.selectbox("Select font name", ["All"] + font_names)
+    selected_font_size = st.sidebar.selectbox("Select font size", ["All"] + [str(fs) for fs in font_sizes])
+    selected_font_color = st.sidebar.selectbox("Select font color", ["All"] + [str(fc) for fc in font_colors])
 
     # Show the filtered data
     for fp in font_properties_list:
@@ -66,7 +66,7 @@ def display_fonts(pdf_path):
 
 st.title("Filter with Fonts (WORKING)")
 
-uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
+uploaded_file = st.sidebar.file_uploader("Upload a PDF file", type="pdf")
 
 if uploaded_file is not None:
     display_fonts(uploaded_file)
