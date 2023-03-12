@@ -1,16 +1,19 @@
 import streamlit as st
 import io
 import layoutparser as lp
-from pdf2image import convert_from_bytes
+import fitz
 from PIL import Image
 
 
 def visualize_layouts(pdf_file):
-    # Convert PDF to bytes
-    pdf_bytes = io.BytesIO(pdf_file.read())
-    
-    # Convert bytes to image
-    pil_images = convert_from_bytes(pdf_bytes.read())
+    # Convert PDF to images
+    with io.BytesIO(pdf_file.read()) as pdf_buffer:
+        doc = fitz.open(stream=pdf_buffer.read(), filetype="pdf")
+        pil_images = []
+        for page in doc:
+            pix = page.getPixmap(alpha=False)
+            img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+            pil_images.append(img)
     
     # Extract layouts
     layouts = lp.Detectron2LayoutModel('lp://PubLayNet-faster_rcnn').detect(pil_images)
