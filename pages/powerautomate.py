@@ -16,10 +16,20 @@ def visualize_layouts(pdf_file):
             pil_images.append(img)
     
     # Extract layouts
-    layouts = lp.models.Detectron2LayoutModel('lp://PubLayNet-faster_rcnn').detect(pil_images)
+    # layouts = lp.models.Detectron2LayoutModel('lp://PubLayNet-faster_rcnn').detect(pil_images)
     
     # Display layouts
-    for page_layout in layouts:
+    
+
+# Streamlit app
+st.title('PDF Layout Visualizer')
+
+pdf_file = st.file_uploader('Upload a PDF file', type='pdf')
+if pdf_file is not None:
+
+  pdf_layout = lp.load_pdf(pdf_file)
+  visualize_layouts(pdf_file)
+  for page_layout in pdf_layout:
         page_image = pil_images[page_layout.page_number]
         st.image(page_image, use_column_width=True)
         for block in page_layout.blocks:
@@ -27,10 +37,3 @@ def visualize_layouts(pdf_file):
             st.write(block)
             st.image(block.crop(page_image), use_column_width=True)
 
-
-# Streamlit app
-st.title('PDF Layout Visualizer')
-
-pdf_file = st.file_uploader('Upload a PDF file', type='pdf')
-if pdf_file is not None:
-    visualize_layouts(pdf_file)
