@@ -3,3 +3,4 @@ pymupdf
 label-studio
 layoutparser
 streamlit-labelstudio
+Pillow
