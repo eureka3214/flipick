@@ -1,7 +1,6 @@
 streamlit
 pymupdf
-label-studio
 layoutparser
-streamlit-labelstudio
 Pillow
 pdf2image
+pdfminer
