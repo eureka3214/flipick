@@ -35,6 +35,6 @@ for i in range(3): # change the number of paragraphs as per your requirement
     paragraphs.append(paragraph)
 
 # Tag paragraphs with headings
-if st.button("Tag paragraphs"):
+if st.sidebar.button("Tag paragraphs"):
     tagged_data = tag_paragraphs(headings, paragraphs)
     st.write(tagged_data)
