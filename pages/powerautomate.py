@@ -11,7 +11,7 @@ def visualize_layouts(pdf_file):
         doc = fitz.open(stream=pdf_buffer.read(), filetype="pdf")
         pil_images = []
         for page in doc:
-            pix = page.getPixmap(alpha=False)
+            pix = page.get_pixmap(alpha=False)
             img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
             pil_images.append(img)
     
