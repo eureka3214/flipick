@@ -20,7 +20,7 @@ if uploaded_file is not None:
     
     html = txtpg.extractHTML()
 
-    html_tag = f"<div>{html}</div>"
+    # html_tag = f"<div>{html}</div>"
     js_function = """
         <script>
             var headings = document.getElementsByTagName("h2");
@@ -33,7 +33,7 @@ if uploaded_file is not None:
             }
         </script>
         """
-    st.markdown(html_tag + js_function, unsafe_allow_html =True) 
+    st.markdown(html + js_function, unsafe_allow_html =True) 
 
 # Input headings
 st.sidebar.header("Enter the headings:")
