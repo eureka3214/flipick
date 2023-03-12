@@ -1,40 +1,29 @@
 import streamlit as st
 import fitz
 
-# Create a dictionary to store the tagged data
-tagged_data = {}
+def tag_paragraphs(headings, paragraphs):
+    tagged_data = {}
+    for i, heading in enumerate(headings):
+        tagged_data[heading] = paragraphs[i]
+    return tagged_data
 
-# Define a function to tag the paragraphs
-def tag_paragraphs(page):
-    # Get the paragraphs in the page
-    paragraphs = page.getText("text").split("\n\n")
-    for i, para in enumerate(paragraphs):
-        # Display the paragraph text and a dropdown to select the heading
-        st.write(f"Paragraph {i+1}: {para}")
-        heading = st.selectbox("Select Heading", ["", "Heading 1", "Heading 2", "Heading 3"])
-        if heading:
-            # Store the tagged data in the dictionary
-            tagged_data.setdefault(heading, []).append({
-                "text": para,
-                "style": page.get_text_style(i)
-            })
+st.title("Tagger Application")
 
-# Define the main function
-def main():
-    # Upload a PDF file
-    pdf_file = st.file_uploader("Upload a PDF file", type=["pdf"])
-    if pdf_file is not None:
-        # Open the PDF file using Pymupdf
-        pdf_doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
-        # Display the number of pages in the PDF
-        st.write(f"Number of Pages: {pdf_doc.page_count}")
-        # Loop through each page in the PDF
-        for i in range(pdf_doc.page_count):
-            st.write(f"Page {i+1}")
-            # Call the tag_paragraphs function to tag the paragraphs
-            tag_paragraphs(pdf_doc[i])
-        # Display the tagged data
-        st.write(tagged_data)
+# Input headings
+st.header("Enter the headings:")
+headings = []
+for i in range(3): # change the number of headings as per your requirement
+    heading = st.text_input(f"Heading {i+1}")
+    headings.append(heading)
 
-if __name__ == "__main__":
-    main()
+# Input paragraphs
+st.header("Enter the paragraphs:")
+paragraphs = []
+for i in range(3): # change the number of paragraphs as per your requirement
+    paragraph = st.text_area(f"Paragraph {i+1}")
+    paragraphs.append(paragraph)
+
+# Tag paragraphs with headings
+if st.button("Tag paragraphs"):
+    tagged_data = tag_paragraphs(headings, paragraphs)
+    st.write(tagged_data)
