@@ -33,7 +33,7 @@ if uploaded_file is not None:
             }
         </script>
         """
-    st.markdown(html + js_function, unsafe_allow_html =True) 
+    st.markdown(html_tag + js_function, unsafe_allow_html =True) 
 
 # Input headings
 st.sidebar.header("Enter the headings:")
