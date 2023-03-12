@@ -18,7 +18,7 @@ if uploaded_file is not None:
     txtpg = page.get_textpage()
     
     html = txtpg.extractHTML()
-    col2.markdown(html, unsafe_allow_html =True) 
+    st.markdown(html, unsafe_allow_html =True) 
 
 # Input headings
 st.sidebar.header("Enter the headings:")
