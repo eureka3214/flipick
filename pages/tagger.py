@@ -16,9 +16,22 @@ if uploaded_file is not None:
     page = doc[0]
         # for page in doc:
     txtpg = page.get_textpage()
+
     
     html = txtpg.extractHTML()
-    st.markdown(html, unsafe_allow_html =True) 
+    js_function = """
+        <script>
+            var headings = document.getElementsByTagName("h2");
+            for (var i = 0; i < headings.length; i++) {
+                headings[i].addEventListener("click", function() {
+                    var id = this.innerText.toLowerCase().replace(/ /g, "-");
+                    var p = document.getElementById("p" + id);
+                    p.style.display = (p.style.display === "none" ? "block" : "none");
+                });
+            }
+        </script>
+        """
+    st.markdown(html + js_function, unsafe_allow_html =True) 
 
 # Input headings
 st.sidebar.header("Enter the headings:")
