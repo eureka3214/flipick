@@ -28,14 +28,14 @@ pdf_file = st.file_uploader('Upload a PDF file', type='pdf')
 if pdf_file is not None:
   with io.BytesIO(pdf_file.read()) as pdf_buffer:
         doc = fitz.open(stream=pdf_buffer.read(), filetype="pdf")
-        pdf_layout = lp.load_pdf(doc)
-        st.write(pdf_layout)
-        for page_layout in pdf_layout:
-          st.write(page_layout)
+  pdf_layout = lp.load_pdf(doc)
+  st.write(pdf_layout)
+  for page_layout in pdf_layout:
+    st.write(page_layout)
       # page_image = pil_images[page_layout.page_number]
       # st.image(page_image, use_column_width=True)
-        for block in page_layout.blocks:
-            st.write(f'Block {block.id} ({block.type}):')
-            st.write(block)
+  for block in page_layout.blocks:
+      st.write(f'Block {block.id} ({block.type}):')
+      st.write(block)
             # st.image(block.crop(page_image), use_column_width=True)
 
