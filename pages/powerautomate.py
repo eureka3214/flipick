@@ -27,14 +27,19 @@ st.title('PDF Layout Visualizer')
 pdf_file = st.file_uploader('Upload a PDF file', type='pdf')
 if pdf_file is not None:
 
+  
+
+    
   pdf_layout = lp.load_pdf(pdf_file)
   # visualize_layouts(pdf_file)
-  for page_layout in pdf_layout:
-    st.write(page_layout)
-    with io.BytesIO(pdf_file.read()) as pdf_buffer:
-#         doc = fitz.open(stream=pdf_buffer.read(), filetype="pdf")
-        # page_image = pil_images[page_layout.page_number]
-        # st.image(page_image, use_column_width=True)
+
+  with io.BytesIO(pdf_file.read()) as pdf_buffer:
+        doc = fitz.open(stream=pdf_buffer.read(), filetype="pdf")
+        pdf_layout = lp.load_pdf(doc)
+        for page_layout in pdf_layout:
+          st.write(page_layout)
+      # page_image = pil_images[page_layout.page_number]
+      # st.image(page_image, use_column_width=True)
         for block in page_layout.blocks:
             st.write(f'Block {block.id} ({block.type}):')
             st.write(block)
