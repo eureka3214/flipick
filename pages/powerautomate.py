@@ -36,5 +36,5 @@ if pdf_file is not None:
         for block in page_layout.blocks:
             st.write(f'Block {block.id} ({block.type}):')
             st.write(block)
-            st.image(block.crop(page_image), use_column_width=True)
+            # st.image(block.crop(page_image), use_column_width=True)
 
