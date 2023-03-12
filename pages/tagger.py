@@ -23,7 +23,7 @@ if uploaded_file is not None:
     # html_tag = f"<div>{html}</div>"
     js_function = """
         <script>
-            var headings = document.getElementsByTagName("h2");
+            var headings = document.getElementsByTagName("p");
             for (var i = 0; i < headings.length; i++) {
                 headings[i].addEventListener("click", function() {
                     var id = this.innerText.toLowerCase().replace(/ /g, "-");
