@@ -6,9 +6,11 @@ from PIL import Image
 
 
 def visualize_layouts(pdf_file):
-    # Convert PDF to image
-    with io.BytesIO(pdf_file.read()) as pdf_buffer:
-        pil_images = convert_from_bytes(pdf_buffer.read())
+    # Convert PDF to bytes
+    pdf_bytes = io.BytesIO(pdf_file.read())
+    
+    # Convert bytes to image
+    pil_images = convert_from_bytes(pdf_bytes.read())
     
     # Extract layouts
     layouts = lp.Detectron2LayoutModel('lp://PubLayNet-faster_rcnn').detect(pil_images)
