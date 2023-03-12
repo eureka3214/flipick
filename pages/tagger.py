@@ -19,6 +19,8 @@ if uploaded_file is not None:
 
     
     html = txtpg.extractHTML()
+
+    html_tag = "<div>{html}</div>"
     js_function = """
         <script>
             var headings = document.getElementsByTagName("h2");
