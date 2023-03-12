@@ -4,3 +4,4 @@ label-studio
 layoutparser
 streamlit-labelstudio
 Pillow
+pdf2image
