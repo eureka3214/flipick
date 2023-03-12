@@ -27,7 +27,7 @@ st.title('PDF Layout Visualizer')
 pdf_file = st.file_uploader('Upload a PDF file', type='pdf')
 if pdf_file is not None:
   with io.BytesIO(pdf_file.read()) as pdf_buffer:
-        doc = fitz.open(stream=pdf_buffer.read(), filetype="pdf")
+    doc = fitz.open(stream=pdf_buffer.read(), filetype="pdf")
   pdf_layout = lp.load_pdf(doc)
   st.write(pdf_layout)
   for page_layout in pdf_layout:
