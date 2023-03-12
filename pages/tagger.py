@@ -9,6 +9,17 @@ def tag_paragraphs(headings, paragraphs):
 
 st.title("Tagger Application")
 
+uploaded_file = st.sidebar.file_uploader("Upload a PDF file", type="pdf")
+
+if uploaded_file is not None:
+    doc = fitz.open(stream=uploaded_file.read(), filetype="pdf")
+    page = doc[0]
+        # for page in doc:
+    txtpg = page.get_textpage()
+    
+    html = txtpg.extractHTML()
+    col2.markdown(html, unsafe_allow_html =True) 
+
 # Input headings
 st.sidebar.header("Enter the headings:")
 headings = []
