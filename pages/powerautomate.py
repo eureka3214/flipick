@@ -16,7 +16,7 @@ def visualize_layouts(pdf_file):
             pil_images.append(img)
     
     # Extract layouts
-    layouts = lp.Detectron2LayoutModel('lp://PubLayNet-faster_rcnn').detect(pil_images)
+    layouts = lp.models.Detectron2LayoutModel('lp://PubLayNet-faster_rcnn').detect(pil_images)
     
     # Display layouts
     for page_layout in layouts:
