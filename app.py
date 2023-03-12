@@ -35,11 +35,12 @@ def display_fonts(pdf_path):
     
     html = txtpg.extractHTML()
     xml = txtpg.extractXML()
-    dict = txtpg.extractRAWJSON()
-    st.write(dict)
+
+    # dict = txtpg.extractRAWJSON()
+    # st.write(dict)
     # st.code(xml,language='xml')
     # st.code(html,language='html')
-    # col2.markdown(html, unsafe_allow_html =True) 
+    col2.markdown(html, unsafe_allow_html =True) 
     
         
     # doc.close()
