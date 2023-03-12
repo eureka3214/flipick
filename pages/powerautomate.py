@@ -1,53 +1,30 @@
 import streamlit as st
-from streamlit_labelstudio import st_labelstudio
+import io
+import layoutparser as lp
+from PIL import Image
 
-st.set_page_config(layout='wide')
 
-config = """
-      <View>
-        <View style="padding: 25px; box-shadow: 2px 2px 8px #AAA;">
-          <Image name="img" value="$image" width="100%" maxWidth="100%" brightnessControl="true" contrastControl="true" zoomControl="true" rotateControl="true"></Image>
-        </View>
-        <RectangleLabels name="tag" toName="img">
-          <Label value="Hello"></Label>
-          <Label value="Moon"></Label>
-        </RectangleLabels>
-      </View>
-    """
+def visualize_layouts(pdf_file):
+    # Convert PDF to image
+    with io.BytesIO(pdf_file.read()) as pdf_buffer:
+        pil_images = lp.PDF2IMG()(pdf_buffer)
+    
+    # Extract layouts
+    layouts = lp.Detectron2LayoutModel('lp://PubLayNet-faster_rcnn').detect(pil_images)
+    
+    # Display layouts
+    for page_layout in layouts:
+        page_image = pil_images[page_layout.page_number]
+        st.image(page_image, use_column_width=True)
+        for block in page_layout.blocks:
+            st.write(f'Block {block.id} ({block.type}):')
+            st.write(block)
+            st.image(block.crop(page_image), use_column_width=True)
 
-interfaces = [
-  "panel",
-  "update",
-  "controls",
-  "side-column",
-  "completions:menu",
-  "completions:add-new",
-  "completions:delete",
-  "predictions:menu",
-],
 
-user = {
-  'pk': 1,
-  'firstName': "James",
-  'lastName': "Dean"
-},
+# Streamlit app
+st.title('PDF Layout Visualizer')
 
-task = {
-  'completions': [],
-  'predictions': [],
-  'id': 1,
-  'data': {
-    'image': "https://htx-misc.s3.amazonaws.com/opensource/label-studio/examples/images/nick-owuor-astro-nic-visuals-wDifg5xc9Z4-unsplash.jpg"
-  }
-}
-
-results_raw = st_labelstudio(config, interfaces, user, task)
-
-if results_raw is not None:
-  areas = [v for k, v in results_raw['areas'].items()]
-
-  results = []
-  for a in areas:
-    results.append({'id':a['id'], 'x':a['x'], 'y':a['y'], 'width':a['width'], 'height':a['height'], 'label':a['results'][0]['value']['rectanglelabels'][0]})
-
-  st.table(results)
+pdf_file = st.file_uploader('Upload a PDF file', type='pdf')
+if pdf_file is not None:
+    visualize_layouts(pdf_file)
