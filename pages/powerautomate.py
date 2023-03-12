@@ -28,7 +28,7 @@ pdf_file = st.file_uploader('Upload a PDF file', type='pdf')
 if pdf_file is not None:
 
   pdf_layout = lp.load_pdf(pdf_file)
-  visualize_layouts(pdf_file)
+  # visualize_layouts(pdf_file)
   for page_layout in pdf_layout:
         page_image = pil_images[page_layout.page_number]
         st.image(page_image, use_column_width=True)
