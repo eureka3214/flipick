@@ -30,7 +30,7 @@ if pdf_file is not None:
   
 
     
-  pdf_layout = lp.load_pdf(pdf_file)
+  # pdf_layout = lp.load_pdf(pdf_file)
   # visualize_layouts(pdf_file)
 
   with io.BytesIO(pdf_file.read()) as pdf_buffer:
